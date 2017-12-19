@@ -2,7 +2,7 @@
 
 # List files  need to edit for adding api
 
-<img src="https://github.com/dinhtho/testReact/blob/master/image.png" width="800"/>
+<img src="https://github.com/dinhtho/ReactNativeDemo/blob/master/image.png" width="800"/>
 
 
 
