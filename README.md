@@ -1,4 +1,13 @@
 #  testReact
+
+# List files  need to edit for adding api
+
+<img src="https://github.com/dinhtho/testReact/blob/master/image.png" width="800"/>
+
+
+
+
+
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](http://standardjs.com/)
 
 * Standard compliant React Native App Utilizing [Ignite](https://github.com/infinitered/ignite)
