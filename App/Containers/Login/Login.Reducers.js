@@ -1,42 +1,29 @@
-import {ProfileType} from './Profile.Action'
+import {LoginType} from './Login.Actions'
 import {createReducer} from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
 /* ------------- Initial State ------------- */
 const INITIAL_STATE = Immutable({
-  data: null,
-  isFetching: false,
-  error: false
+  data: ""
 });
 
 /* ------------- Reducers ------------- */
 export const reducer = createReducer(INITIAL_STATE, {
-  [ProfileType.USER_REQUEST]: (state, action) => {
+  [LoginType.LOGIN]: (state, action) => {
     return {...state,
-      data: null,
-      delete : true,
-      error: false
+      data: null
     }
   },
-  [ProfileType.REQUEST]: (state, action) => {
+  [LoginType.SUCCESS]: (state, action) => {
+    console.log("redu1: "+action.data)
     return {...state,
-      data: null,
-      isFetching: true,
-      error: false
+      data: action.data
     }
   },
-  [ProfileType.SUCCESS]: (state, action) => {
+  [LoginType.FAILURE]: (state, action) => {
+    console.log("redu2: "+action.error)
     return {...state,
-      data: action.data,
-      isFetching: false,
-      error: false
-    }
-  },
-  [ProfileType.FAILURE]: (state, action) => {
-    return {...state,
-      data: action.error,
-      isFetching: false,
-      error: true
+      data: action.error
     }
   }
 });

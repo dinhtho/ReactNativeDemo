@@ -4,8 +4,11 @@ import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
 
 
-import {ProfileType, ProfileFunction} from '../Containers/Profile/Profile.Action'
-import ProfileApi from '../Containers/Profile/Profile.Api'
+// import {ProfileType, ProfileFunction} from '../Containers/Profile/Profile.Action'
+// import ProfileApi from '../Containers/Profile/Profile.Api'
+
+import {LoginType, LoginFunction} from '../Containers/Login/Login.Actions'
+import LoginApi from '../Containers/Login/Login.Api'
 
 /* ------------- Types ------------- */
 
@@ -33,8 +36,7 @@ export default function * root () {
     // some sagas receive extra parameters in addition to an action
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
 
-    takeLatest(ProfileType.REQUEST, ProfileFunction.getData, ProfileApi.create()),
 
-    takeLatest(ProfileType.USER_REQUEST, ProfileFunction.getUser, ProfileApi.create())
+    takeLatest(LoginType.LOGIN,LoginFunction.login,LoginApi.create())
   ])
 }

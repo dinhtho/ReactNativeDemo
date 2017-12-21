@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import {ProfileAction} from './Profile.Actions'
+import {LoginAction} from './Login.Actions'
+import {connect} from 'react-redux'
 import {
  Text,
  TextInput,
@@ -8,7 +9,7 @@ import {
 } from 'react-native'
 
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
 
   constructor (props) {
     super(props)
@@ -35,11 +36,11 @@ export default class LoginScreen extends Component {
           />
           <TouchableOpacity 
             style={{width:200, height:30,backgroundColor:'blue',justifyContent:'center',alignItems: 'center'}}
-            onPress ={()=>this.props.onLogin(ProfileAction.request(this.state.username,this.state.password))}
+            onPress ={()=>this.props.onLogin(LoginAction.login({username: this.state.username, password: this.state.password}))}
             >
             <Text>Login</Text>
           </TouchableOpacity>
-          <Text style ={{marginTop:10,backgroundColor:'grey'}}>this.props.result</Text>
+          <Text style ={{marginTop:10,backgroundColor:'grey'}}>{this.props.result}</Text>
         </View>
       );
       
@@ -49,17 +50,15 @@ export default class LoginScreen extends Component {
 }
 
 function mapStateToProps (state) {
-  result: state.login.data
-  // console.log('login', state)
   return {
-   
+    result: state.login.data
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLogin: (obj) => dispatch(obj)
+    onLogin: (request) => dispatch(request)
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

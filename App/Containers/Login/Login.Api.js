@@ -1,11 +1,6 @@
 import apisauce from 'apisauce'
 
-const create = (baseURL = 'https://api.github.com/') => {
-
-  const data = "world";
-  const getData = (request) => {
-    return request + "-" + data;
-  };
+const create = (baseURL = 'http://axcro.api.web.beesightsoft.com/api/') => {
 
   //Example rest
   const api = apisauce.create({
@@ -15,11 +10,11 @@ const create = (baseURL = 'https://api.github.com/') => {
     },
     timeout: 10000
   });
-  const getUser = (username) => api.get('search/users', {q: username});
+
+ const login =(username,password)=> api.post('/auth/signIn', {email: username,password: password,device_platform: 'android'});
 
   return {
-    getData,
-    getUser
+    login
   }
 };
 
