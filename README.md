@@ -2,7 +2,7 @@
 
 # List files  need to edit for adding api
 
-<img src="https://github.com/dinhtho/ReactNativeDemo/blob/master/image.png" width="400" height="600">
+<img src="https://github.com/dinhtho/ReactNativeDemo/blob/master/image.png" width="1000" height="1200">
 
 
 
