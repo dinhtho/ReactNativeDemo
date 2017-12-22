@@ -1,6 +1,6 @@
 import apisauce from 'apisauce'
 
-const create = (baseURL = 'http://link/to/api/') => {
+const create = (baseURL = 'http://link/api/') => {
 
   //Example rest
   const api = apisauce.create({
@@ -11,7 +11,7 @@ const create = (baseURL = 'http://link/to/api/') => {
     timeout: 10000
   });
 
- const login =(username,password)=> api.post('/auth/signIn', {email: username,password: password,device_platform: 'android'});
+  const login = (username, password) => api.post('/auth/signIn', { email: username, password: password, device_platform: 'android' });
 
   return {
     login
