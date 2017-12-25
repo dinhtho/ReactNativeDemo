@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { LoginAction } from './Login.Actions'
+import { LoginAction } from './Login.Action'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import {
@@ -16,14 +16,17 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      username: '',
-      password: ''
+      loginRequest :{
+        username: '',
+        password: ''
+      }
     }
   }
 
   
 
   componentWillReceiveProps(nextProps){
+    console.log("asd2")
     if(nextProps.result=="success"){
       this.props.navigation.navigate('ListItemScreen', {})
     }
@@ -36,17 +39,27 @@ class LoginScreen extends Component {
         <Text>Username</Text>
         <TextInput
           style={{ width: 200, height: 30 }}
-          onChangeText={(text) => this.setState({ username: text })} />
+          onChangeText={(text) => this.setState(prevState => ({
+            loginRequest: {
+                ...prevState.loginRequest,
+                username: text
+            }
+        }))} />
 
         <Text>Password</Text>
         <TextInput
           style={{ width: 200, height: 30 }}
-          onChangeText={(text) => this.setState({ password: text })}
+          onChangeText={(text) => this.setState(prevState=>({
+            loginRequest:{
+              ...prevState.loginRequest,
+              password: text
+            }
+          }))}
 
         />
         <TouchableOpacity
           style={{ width: 200, height: 30, backgroundColor: 'blue', justifyContent: 'center', alignItems: 'center' }}
-          onPress={() => this.props.onLogin(LoginAction.login({ username: this.state.username, password: this.state.password }))}
+          onPress={() => this.props.onLogin(LoginAction.login(this.state.loginRequest))}
         >
           <Text>Login</Text>
         </TouchableOpacity>
@@ -61,6 +74,7 @@ class LoginScreen extends Component {
 
 
 function mapStateToProps(state) {
+  console.log("asd1")
   return {
     result: state.login.data,
     

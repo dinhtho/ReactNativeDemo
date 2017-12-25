@@ -4,11 +4,12 @@ import FixtureAPI from '../Services/FixtureApi'
 import DebugConfig from '../Config/DebugConfig'
 
 
-// import {ProfileType, ProfileFunction} from '../Containers/Profile/Profile.Action'
-// import ProfileApi from '../Containers/Profile/Profile.Api'
-
-import {LoginType, LoginFunction} from '../Containers/Login/Login.Actions'
+import {LoginType, LoginFunction} from '../Containers/Login/Login.Action'
 import LoginApi from '../Containers/Login/Login.Api'
+
+import {ListItemType, ListItemFunction} from '../Containers/ListItem/ListItem.Action'
+import ListItemApi from '../Containers/ListItem/ListItem.Api'
+
 
 /* ------------- Types ------------- */
 
@@ -37,6 +38,9 @@ export default function * root () {
     takeLatest(GithubTypes.USER_REQUEST, getUserAvatar, api),
 
 
-    takeLatest(LoginType.LOGIN,LoginFunction.login,LoginApi.create())
+    takeLatest(LoginType.LOGIN,LoginFunction.login,LoginApi.create()),
+
+
+    takeLatest(ListItemType.LIST_ITEM_FETCH,ListItemFunction.getData,ListItemApi.create())
   ])
 }

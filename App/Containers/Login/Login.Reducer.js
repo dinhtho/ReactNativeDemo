@@ -1,4 +1,4 @@
-import { LoginType } from './Login.Actions'
+import { LoginType } from './Login.Action'
 import { createReducer } from 'reduxsauce'
 import Immutable from 'seamless-immutable'
 
@@ -16,7 +16,7 @@ export const reducer = createReducer(INITIAL_STATE, {
     }
   },
   [LoginType.SUCCESS]: (state, action) => {
-    console.log("redu1: " + action.data)
+    console.log("redu1: " + JSON.stringify(action)); 
     return {
       ...state,
       data: "success"
