@@ -1,6 +1,6 @@
 import apisauce from 'apisauce'
 
-const create = (baseURL = 'http://linkapi/api/') => {
+const create = (baseURL = 'http://link/api/') => {
 
   //Example rest
   const api = apisauce.create({
@@ -11,7 +11,7 @@ const create = (baseURL = 'http://linkapi/api/') => {
     timeout: 10000
   });
 
-  const login = (username, password) => api.post('/auth/signIn', { email: username, password: password, device_platform: 'android' });
+  const login = (email, password) => api.post('/auth/signIn', { email: email, password: password, device_platform: 'android' });
 
   return {
     login

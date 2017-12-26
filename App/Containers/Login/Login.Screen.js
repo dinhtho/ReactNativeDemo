@@ -17,7 +17,7 @@ class LoginScreen extends Component {
     super(props)
     this.state = {
       loginRequest :{
-        username: '',
+        email: '',
         password: ''
       }
     }
@@ -42,7 +42,7 @@ class LoginScreen extends Component {
           onChangeText={(text) => this.setState(prevState => ({
             loginRequest: {
                 ...prevState.loginRequest,
-                username: text
+                email: text
             }
         }))} />
 

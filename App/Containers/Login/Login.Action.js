@@ -18,12 +18,10 @@ export const LoginFunction = {
 
 
 function* login(api, action) {
-  const username = action.login.username;
+  const email = action.login.email;
   const password = action.login.password;
   console.log(JSON.stringify(action));
-  console.log("username" + username)
-  console.log("username" + password)
-  const response = yield call(api.login, username, password);
+  const response = yield call(api.login, email, password);
   console.log("username" + (JSON.stringify(response.data)));
   if (response) {
     if (!response.data.error) {
