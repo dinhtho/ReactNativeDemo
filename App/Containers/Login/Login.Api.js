@@ -1,6 +1,6 @@
 import apisauce from 'apisauce'
 
-const create = (baseURL = 'http://link/api/') => {
+const create = (baseURL = 'http://linkapi/api/') => {
 
   //Example rest
   const api = apisauce.create({

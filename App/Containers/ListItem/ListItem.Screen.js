@@ -43,7 +43,7 @@ class ListItemScreen extends Component {
             <View>
                 <Text>{item.name}</Text>
                 <Image
-                    style={{ flex: 1, height: 58 }}
+                    style={{ flex: 1, height: 90 }}
                     source={{ uri: url }}
                 />
             </View>
@@ -58,7 +58,7 @@ class ListItemScreen extends Component {
     render() {
         return (
             <View>
-                <Text>result: {this.props.result}</Text>
+        
                 <ListView
                     dataSource={this.state.dataSource}
                     renderRow={this.renderRow.bind(this)}
@@ -74,9 +74,7 @@ class ListItemScreen extends Component {
 
 function mapStateToProps(state) {
     return {
-        result: state.listItemTest.issucceeded,
-        data: state.listItemTest.data,
-
+        data: state.listItemTest.data
     }
 }
 
