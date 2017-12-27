@@ -8,7 +8,8 @@ import {
     View,
     TouchableOpacity,
     ListView,
-    Image
+    Image,
+    FlatList
 } from 'react-native'
 import { URL } from 'url';
 
@@ -16,23 +17,23 @@ import { URL } from 'url';
 class ListItemScreen extends Component {
     constructor() {
         super();
-        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.state = {
-            dataSource: ds.cloneWithRows(['row 1', 'row 2']),
-        };
+        // const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        // this.state = {
+        //     dataSource: ds.cloneWithRows(['row 1', 'row 2']),
+        // };
     }
 
 
 
-    componentWillReceiveProps(nextProp) {
-        this.setState({
-            dataSource: this.state.dataSource.cloneWithRows(nextProp.data)
-        });
+    // componentWillReceiveProps(nextProp) {
+    //     this.setState({
+    //         dataSource: this.state.dataSource.cloneWithRows(nextProp.data)
+    //     });
 
-    }
+    // }
 
-    renderRow(item) {
-        let url = "";
+    renderItem(item) {
+        let url;
         console.log("test")
         if (item.files && item.files.length > 0) {
             url = item.files[0].large_url;
@@ -57,13 +58,20 @@ class ListItemScreen extends Component {
 
     render() {
         return (
-            <View>
-        
-                <ListView
-                    dataSource={this.state.dataSource}
-                    renderRow={this.renderRow.bind(this)}
-                />
-            </View>
+
+
+            <FlatList
+                data={this.props.data}
+                renderItem={({ item }) => this.renderItem(item)}
+                keyExtractor={(item, index) => index}
+            />
+
+
+            // <ListView
+            //     dataSource={this.state.dataSource}
+            //     renderRow={this.renderRow.bind(this)}
+            // />
+
 
         );
     }
