@@ -5,7 +5,7 @@ import Immutable from 'seamless-immutable'
 /* ------------- Initial State ------------- */
 const INITIAL_STATE = Immutable({
   issucceeded: false,
-  data: null,
+  data: [],
   error: null
 });
 
@@ -15,7 +15,7 @@ export const reducer = createReducer(INITIAL_STATE, {
     return {
       ...state,
       issucceeded: false,
-      data: null,
+      data: [],
       error: null
     }
   },

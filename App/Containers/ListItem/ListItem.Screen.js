@@ -61,9 +61,10 @@ class ListItemScreen extends Component {
 
 
             <FlatList
+                keyExtractor={(item, index) => index}
                 data={this.props.data}
                 renderItem={({ item }) => this.renderItem(item)}
-                keyExtractor={(item, index) => index}
+                
             />
 
 
