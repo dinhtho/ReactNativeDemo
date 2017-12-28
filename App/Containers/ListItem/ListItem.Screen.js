@@ -8,7 +8,7 @@ import {
     View,
     TouchableOpacity,
     ListView,
-    Image,
+    ImageBackground,
     FlatList,
     TouchableWithoutFeedback,
     BackAndroid
@@ -34,6 +34,15 @@ class ListItemScreen extends Component {
 
     // }
 
+    renderSeparator = () => (
+        <View
+            style={{
+                backgroundColor: 'white',
+                height: 2,
+            }}
+        />
+    );
+
     onClickItem(index) {
         console.log("aaa" + index);
     }
@@ -48,17 +57,19 @@ class ListItemScreen extends Component {
         return (
             <TouchableWithoutFeedback onPress={() => this.onClickItem(index)}>
                 <View   >
-                    <Text>{item.name}</Text>
-                    <Image
-                        style={{ flex: 1, height: 90 }}
+
+                    <ImageBackground
+                        style={{ flex: 1, height: 120, alignItems:'center',justifyContent:'center' }}
                         source={{ uri: url }}
-                    />
+                    >
+                        <Text>{item.name}</Text>
+                    </ImageBackground>
                 </View>
             </TouchableWithoutFeedback>
         )
     }
 
-   
+
 
     render() {
         return (
@@ -68,6 +79,7 @@ class ListItemScreen extends Component {
                 ref={(ref) => { this.flatListRef = ref; }}
                 keyExtractor={(item, index) => index}
                 data={this.props.data}
+                ItemSeparatorComponent={this.renderSeparator}
                 renderItem={({ item, index }) => this.renderItem(item, index)}
 
 
@@ -86,9 +98,9 @@ class ListItemScreen extends Component {
     }
 
     // scroll flatlist 
-    onBackPress(){
-        this.flatListRef.scrollToIndex({animated: true, index: 0});
-        return true; 
+    onBackPress() {
+        this.flatListRef.scrollToIndex({ animated: true, index: 0 });
+        return true;
     }
     componentDidMount() {
         this.props.fetchData(ListItemAction.listItemFetch());
@@ -97,7 +109,7 @@ class ListItemScreen extends Component {
     }
 
 
- 
+
 
 }
 
