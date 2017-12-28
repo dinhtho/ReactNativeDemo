@@ -10,7 +10,8 @@ import {
     ListView,
     Image,
     FlatList,
-    TouchableWithoutFeedback
+    TouchableWithoutFeedback,
+    BackAndroid
 } from 'react-native'
 import { URL } from 'url';
 
@@ -32,6 +33,7 @@ class ListItemScreen extends Component {
     //     });
 
     // }
+
     onClickItem(index) {
         console.log("aaa" + index);
     }
@@ -56,16 +58,14 @@ class ListItemScreen extends Component {
         )
     }
 
-    componentDidMount() {
-        this.props.fetchData(ListItemAction.listItemFetch());
-    }
-
+   
 
     render() {
         return (
 
 
             <FlatList
+                ref={(ref) => { this.flatListRef = ref; }}
                 keyExtractor={(item, index) => index}
                 data={this.props.data}
                 renderItem={({ item, index }) => this.renderItem(item, index)}
@@ -85,7 +85,19 @@ class ListItemScreen extends Component {
         );
     }
 
+    // scroll flatlist 
+    onBackPress(){
+        this.flatListRef.scrollToIndex({animated: true, index: 0});
+        return true; 
+    }
+    componentDidMount() {
+        this.props.fetchData(ListItemAction.listItemFetch());
+        // Back pressed 
+        BackAndroid.addEventListener('hardwareBackPress', this.onBackPress.bind(this));
+    }
 
+
+ 
 
 }
 
