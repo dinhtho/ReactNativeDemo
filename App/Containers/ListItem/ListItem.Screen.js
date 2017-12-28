@@ -9,7 +9,8 @@ import {
     TouchableOpacity,
     ListView,
     Image,
-    FlatList
+    FlatList,
+    TouchableWithoutFeedback
 } from 'react-native'
 import { URL } from 'url';
 
@@ -31,23 +32,27 @@ class ListItemScreen extends Component {
     //     });
 
     // }
-
-    renderItem(item) {
+    onClickItem(index) {
+        console.log("aaa" + index);
+    }
+    renderItem(item, index) {
         let url;
-        console.log("test")
+        console.log("aa" + index)
         if (item.files && item.files.length > 0) {
             url = item.files[0].large_url;
         } else {
             return null;
         }
         return (
-            <View>
-                <Text>{item.name}</Text>
-                <Image
-                    style={{ flex: 1, height: 90 }}
-                    source={{ uri: url }}
-                />
-            </View>
+            <TouchableWithoutFeedback onPress={() => this.onClickItem(index)}>
+                <View   >
+                    <Text>{item.name}</Text>
+                    <Image
+                        style={{ flex: 1, height: 90 }}
+                        source={{ uri: url }}
+                    />
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 
@@ -63,9 +68,12 @@ class ListItemScreen extends Component {
             <FlatList
                 keyExtractor={(item, index) => index}
                 data={this.props.data}
-                renderItem={({ item }) => this.renderItem(item)}
-                
+                renderItem={({ item, index }) => this.renderItem(item, index)}
+
+
             />
+
+
 
 
             // <ListView
