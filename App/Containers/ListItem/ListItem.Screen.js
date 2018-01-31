@@ -11,7 +11,7 @@ import {
     ImageBackground,
     FlatList,
     TouchableWithoutFeedback,
-    BackAndroid
+    BackHandler
 } from 'react-native'
 import { URL } from 'url';
 
@@ -105,7 +105,7 @@ class ListItemScreen extends Component {
     componentDidMount() {
         this.props.fetchData(ListItemAction.listItemFetch());
         // Back pressed 
-        BackAndroid.addEventListener('hardwareBackPress', this.onBackPress.bind(this));
+        BackHandler.addEventListener('hardwareBackPress', this.onBackPress.bind(this));
     }
 
 

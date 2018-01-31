@@ -16,18 +16,18 @@ class LoginScreen extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      loginRequest :{
+      loginRequest: {
         email: '',
         password: ''
       }
     }
   }
 
-  
 
-  componentWillReceiveProps(nextProps){
+
+  componentWillReceiveProps(nextProps) {
     console.log("asd2")
-    if(nextProps.result=="success"){
+    if (nextProps.result == "success") {
       this.props.navigation.navigate('ListItemScreen', {})
     }
   }
@@ -38,19 +38,26 @@ class LoginScreen extends Component {
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
         <Text>Username</Text>
         <TextInput
-          style={{ width: 200, height: 30 }}
+          style={{
+            width: 200,
+            height: 30,
+            padding: 0
+          }}
           onChangeText={(text) => this.setState(prevState => ({
             loginRequest: {
-                ...prevState.loginRequest,
-                email: text
+              ...prevState.loginRequest,
+              email: text
             }
-        }))} />
+          }))} />
 
         <Text>Password</Text>
         <TextInput
-          style={{ width: 200, height: 30 }}
-          onChangeText={(text) => this.setState(prevState=>({
-            loginRequest:{
+          style={{ 
+            width: 200,
+             height: 30 ,
+             padding: 0}}
+          onChangeText={(text) => this.setState(prevState => ({
+            loginRequest: {
               ...prevState.loginRequest,
               password: text
             }
@@ -77,7 +84,7 @@ function mapStateToProps(state) {
   console.log("asd1")
   return {
     result: state.login.data,
-    
+
   }
 }
 
