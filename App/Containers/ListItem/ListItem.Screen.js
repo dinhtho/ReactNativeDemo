@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { ListItemAction } from './ListItem.Action'
 import PropTypes from 'prop-types';
+import { Images } from '../../Themes'
+
 import {
     Text,
-    TextInput,
     View,
-    TouchableOpacity,
-    ListView,
-    ImageBackground,
+    Image,
     FlatList,
     TouchableWithoutFeedback,
-    BackHandler
+    BackHandler,
+    ToastAndroid
 } from 'react-native'
 import { URL } from 'url';
 
@@ -44,26 +44,26 @@ class ListItemScreen extends Component {
     );
 
     onClickItem(index) {
-        console.log("aaa" + index);
+        console.log('click at ' + index);
+        ToastAndroid.show('click at ' + index, ToastAndroid.SHORT)
+
     }
-    renderItem(item, index) {
+    renderItem = ({ item, index }) => {
         let url;
-        console.log("aa" + index)
         if (item.files && item.files.length > 0) {
             url = item.files[0].large_url;
-        } else {
-            return null;
         }
         return (
             <TouchableWithoutFeedback onPress={() => this.onClickItem(index)}>
-                <View   >
+                <View  style={{height:120}} >
 
-                    <ImageBackground
-                        style={{ flex: 1, height: 120, alignItems:'center',justifyContent:'center' }}
-                        source={{ uri: url }}
-                    >
-                        <Text>{item.name}</Text>
-                    </ImageBackground>
+                    <Image
+                        style={{ flex:1}}
+                        source={url ? { uri: url } : Images.ignite}
+                    />
+                    <View style={{ width: '100%',height:'100%', alignItems: 'center', justifyContent: 'center' ,position:'absolute'}}>
+                        <Text style={{}}>{item.name}</Text>
+                    </View>
                 </View>
             </TouchableWithoutFeedback>
         )
@@ -80,7 +80,7 @@ class ListItemScreen extends Component {
                 keyExtractor={(item, index) => index}
                 data={this.props.data}
                 ItemSeparatorComponent={this.renderSeparator}
-                renderItem={({ item, index }) => this.renderItem(item, index)}
+                renderItem={this.renderItem}
 
 
             />

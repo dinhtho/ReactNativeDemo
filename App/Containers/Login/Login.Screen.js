@@ -32,6 +32,10 @@ class LoginScreen extends Component {
     }
   }
 
+  skipLogin = () => {
+    this.props.navigation.navigate('ListItemScreen', {})
+  }
+
 
   render() {
     return (
@@ -52,10 +56,11 @@ class LoginScreen extends Component {
 
         <Text>Password</Text>
         <TextInput
-          style={{ 
+          style={{
             width: 200,
-             height: 30 ,
-             padding: 0}}
+            height: 30,
+            padding: 0
+          }}
           onChangeText={(text) => this.setState(prevState => ({
             loginRequest: {
               ...prevState.loginRequest,
@@ -69,6 +74,13 @@ class LoginScreen extends Component {
           onPress={() => this.props.onLogin(LoginAction.login(this.state.loginRequest))}
         >
           <Text>Login</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          activeOpacity={0.8}
+          onPress={this.skipLogin}
+        >
+          <Text>Skip</Text>
         </TouchableOpacity>
         <Text style={{ marginTop: 10, backgroundColor: 'grey' }}>{this.props.result}</Text>
       </View>
