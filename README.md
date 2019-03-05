@@ -4,6 +4,23 @@
 
 <img src="https://github.com/dinhtho/ReactNativeDemo/blob/master/image.png" width="1000" height="600">
 
+# IOS permission internet
+`<key>NSAppTransportSecurity</key>
+	<!--See http://ste.vn/2015/06/10/configuring-app-transport-security-ios-9-osx-10-11/ -->
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>localhost</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+`
+
 # Apisauce
 
 ```
