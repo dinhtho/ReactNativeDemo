@@ -50,19 +50,21 @@ class ListItemScreen extends Component {
     }
     renderItem = ({ item, index }) => {
         let url;
-        if (item.files && item.files.length > 0) {
+        let name
+        if (item && item.files && item.files.length > 0) {
             url = item.files[0].large_url;
+            name = item.name
         }
         return (
             <TouchableWithoutFeedback onPress={() => this.onClickItem(index)}>
-                <View  style={{height:120}} >
+                <View style={{ height: 120 }} >
 
                     <Image
-                        style={{ flex:1}}
+                        style={{ flex: 1 }}
                         source={url ? { uri: url } : Images.ignite}
                     />
-                    <View style={{ width: '100%',height:'100%', alignItems: 'center', justifyContent: 'center' ,position:'absolute'}}>
-                        <Text style={{}}>{item.name}</Text>
+                    <View style={{ width: '100%', height: '100%', alignItems: 'center', justifyContent: 'center', position: 'absolute' }}>
+                        <Text style={{ backgroundColor: 'transparent' }}>{name}</Text>
                     </View>
                 </View>
             </TouchableWithoutFeedback>
@@ -81,6 +83,8 @@ class ListItemScreen extends Component {
                 data={this.props.data}
                 ItemSeparatorComponent={this.renderSeparator}
                 renderItem={this.renderItem}
+                initialNumToRender={6} // 6 items will load in the first time
+                windowSize={4} // 4 items will load before it's visible (2 on top and 2 below bottom)
 
 
             />
